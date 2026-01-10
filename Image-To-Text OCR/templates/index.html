@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting to Text Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .uploaded-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .accuracy {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 16px;
+            color: #555;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer-text:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Handwriting to Text Converter
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Upload an Image to Convert Handwritten Text to Digital Format</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="file">Upload an Image (PNG, JPG):</label><br><br>
+                <input type="file" name="file" id="file" required><br><br>
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
+
+        {% if extracted_text %}
+            <div class="result">
+                <h3>Extracted Text:</h3>
+                <p>{{ extracted_text }}</p>
+               {% if cer is defined and wer is defined %}
+    <p class="accuracy">Character Error Rate (CER): {{ cer }}%</p>
+    <p class="accuracy">Word Error Rate (WER): {{ wer }}%</p>
+{% endif %}
+
+            </div>
+        {% else %}
+            <p class="error">No text extracted yet. Please upload an image.</p>
+        {% endif %}
+        
+        {% if filename %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('static', filename='uploaded_images/' + filename) }}" class="uploaded-image" alt="Uploaded Image">
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>Developed by <strong>Rizwan Khan</strong> | Roll No: <strong>0046</strong></p>
+    </footer>
+</body>
+</html>
