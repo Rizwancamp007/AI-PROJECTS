@@ -4,6 +4,11 @@
 This project converts handwritten or printed text images into editable digital
 text using an LSTM-based OCR engine.
 </p>
+<h2>🎬 Project Demo</h2>
+
+<p>Short demonstration of the Image to Text OCR project:</p>
+
+<video src="img-to-text-demo clip.mp4" controls width="600"></video>
 
 <h2>🚀 Features</h2>
 <ul>
