@@ -8,7 +8,7 @@ text using an LSTM-based OCR engine.
 
 <p>Short demonstration of the Image to Text OCR project:</p>
 
-<video src="img-to-text-demo clip.mp4" controls width="600"></video>
+<video src="img-to-txt-demo clip.mp4" controls width="600"></video>
 
 <h2>🚀 Features</h2>
 <ul>
